@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        {{ nowTime |date}}
+        <h1> {{n | meiyuan}} </h1>
+    </div>
+</body>
+<script>
+    Vue.filter("meiyuan", (v) => {
+
+        return "$" + v
+    });
+    Vue.filter("date", (v) => {
+
+        const time = new Date(v);
+        return time.getFullYear() + "-" +
+            ((time.getMonth() + 1)).toString().padStart(2, 0) + "-" +
+            (time.getDate()).toString().padStart(2, 0) + " " +
+            (time.getHours()).toString().padStart(2, 0) + ":" +
+            (time.getMinutes()).toString().padStart(2, 0) + ":" +
+            (time.getSeconds()).toString().padStart(2, 0);
+
+
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            nowTime: Date.now(),
+            n: 5
+
+        },
+        filters: {
+            //1.过虑器是一个对象
+            //2.返回的值是过虑的值
+            //3.过虑器的第一个参数是要过虑的值
+            // meiyuan(v) {
+
+            //     return "$" + v
+
+            // },
+            // date(v) {
+            //     const time = new Date(v);
+            //     return time.getFullYear() + "-" +
+            //         ((time.getMonth() + 1)).toString().padStart(2, 0) + "-" +
+            //         (time.getDate()).toString().padStart(2, 0) + " " +
+            //         (time.getHours()).toString().padStart(2, 0) + ":" +
+            //         (time.getMinutes()).toString().padStart(2, 0) + ":" +
+            //         (time.getSeconds()).toString().padStart(2, 0);
+            // }
+
+
+
+        },
+        methods: {
+            getNowTime(v) {
+                // 将时间戳转为年月日时分秒
+                const date = new Date(v);
+                return date.getFullYear() + "-" +
+                    ((date.getMonth() + 1)).toString().padStart(2, 0) + "-" +
+                    (date.getDate()).toString().padStart(2, 0) + " " +
+                    (date.getHours()).toString().padStart(2, 0) + ":" +
+                    (date.getMinutes()).toString().padStart(2, 0) + ":" +
+                    (date.getSeconds()).toString().padStart(2, 0);
+            },
+        },
+
+
+
+    })
+</script>
+
+</html>

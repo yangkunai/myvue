@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <One></One>
+        <Two user-name="root"></Two>
+    </div>
+    <div id="wrap">
+        <One></One>
+        <Two user-name="wrap"></Two>
+    </div>
+</body>
+<script>
+    // 定义了一个全局组件Two,第一个参数是组件名，第二个参数是一个对象，用于配置组件信息
+    Vue.component("Two", {
+        data() {
+            return {
+                age: 12
+            }
+        },
+        props: ["userName"],
+        template: `<div>我是一个Two组件,我来自于：{{userName}}{{age}}</div>`
+    })
+    new Vue({
+        el: "#wrap",
+        components: {
+            One: {
+                template: `<div>wrap->One</div>`
+            }
+        }
+    })
+    new Vue({
+        el: "#root",
+        components: {
+            One: {
+                template: `<div>One</div>`
+            }
+        }
+
+    })
+</script>
+
+</html>

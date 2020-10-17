@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #app input {
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    #app input.active {
+        background: red;
+    }
+    
+    #app div {
+        width: 200px;
+        height: 200px;
+        background: yellow;
+    }
+</style>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        <input :class="{active:index===0}" type="button" @click="index=0" value="娱乐">
+        <input :class="{active:index===1}" type="button" @click="index=1" value="财经">
+        <input :class="{active:index===2}" type="button" @click="index=2" value="新闻">
+        <div v-show="index===0">娱乐</div>
+        <div v-show="index===1">财经</div>
+        <div v-show="index===2">新闻</div>
+
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+        data: {
+            index: 0,
+
+        }
+
+    })
+</script>
+
+</html>

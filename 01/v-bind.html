@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+
+    <div id="app">
+        <button @click="fn">点击切换</button>
+
+
+        <img v-bind:src="imgsrc" alt=""> {{}}
+    </div>
+
+</body>
+
+
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            imgsrc: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+            img
+
+        },
+        methods: {
+
+        },
+    });
+</script>
+
+</html>

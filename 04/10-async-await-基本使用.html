@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{msg}}</h2>
+      <button @click="fn">发请求</button>
+    </div>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            msg: '默认值',
+          };
+        },
+        methods: {
+          //  XHR  $.ajax()  fetch  axios   async+await
+          // fn: function(){}
+          async fn() {
+            const res = await axios.get('http://192.168.69.40:3000/a3');
+            const res2 = await axios.get('http://192.168.69.40:3000/a2');
+            const res1 = await axios.get('http://192.168.69.40:3000/a1');
+            this.msg = res.data;
+          },
+          send() {
+            axios
+              .get('http://192.168.69.40:3000/a3')
+              .then((res) => {
+                this.msg = res.data;
+                axios.get('http://192.168.69.40:3000/a2');
+              })
+              .then((res) => {});
+          },
+        },
+      });
+      // function sendName() {
+      //   // axios.get() 这个函数返回的是一个promise
+      //   console.log(1);
+      //   axios.get('http://192.168.69.40:3000/axios?id=200').then((res) => {
+      //     console.log(2, res.data);
+      //   });
+      //   console.log(3);
+      // }
+
+      // async 是放在函数的关键字前面
+      // async function sendName() {
+      //   // axios.get() 这个函数返回的是一个promise
+      //   console.log(1);
+      //   const res = await axios.get('http://192.168.69.40:3000/a3');
+      //   console.log(3);
+      //   console.log(res.data);
+      // }
+    </script>
+  </body>
+</html>

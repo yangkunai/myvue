@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+
+        <one></one>
+
+
+    </div>
+</body>
+<script>
+    Vue.component('one', {
+
+        data() {
+
+            return {
+
+                num: 1
+            }
+
+        },
+        template: `
+        
+        <div>
+        
+        <h3>{{num}}</h3>
+        
+        
+        
+        </div>
+        
+        
+        
+        `
+
+
+
+
+    })
+    new Vue({
+
+        el: "#app",
+        data: {
+
+        },
+        component: {
+            //定义组件
+            template: {
+                //模板
+            }
+        },
+        methods: {
+            //定义对象和方法t
+
+
+        },
+        computed: {
+            //计算属性
+        },
+        mounteds: {
+            //生命周期
+        },
+        filters: {
+            //过虑器
+
+        },
+        watch: {
+            //侦听事件
+        },
+
+    })
+</script>
+
+</html>

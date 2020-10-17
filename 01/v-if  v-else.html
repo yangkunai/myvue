@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="root">
+        <!--    {{isLogin?"已经登陆成功":"请登陆先"}}-->
+        <div v-if="isLogin">欢迎xxx的到来</div>
+        <div v-else>请登陆先</div>
+
+        <input type="text" v-model.number="sex">
+        <div v-if="sex===1">男</div>
+        <div v-else-if="sex===2">女</div>
+        <div v-else>未知</div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        data: {
+            isLogin: true,
+            sex: 1
+        }
+    })
+</script>
+
+</html>

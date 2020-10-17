@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <book-list></book-list>
+        <book-list></book-list>
+        <book-list></book-list>
+        <book-list></book-list>
+        <book-list></book-list>
+        <book-list></book-list>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        components: {
+            bookList: {
+                data() {
+                    return {
+                        info: ["钢铁是怎样炼成的", "西游记", "水浒传"]
+                    }
+                },
+                template: `
+                    <div>大家好，我是一个图书列表
+                       <p v-for="(item,i) in info" :key="i">{{item}}</p>
+                    </div>
+                `
+            }
+        },
+        data: {
+
+        },
+    })
+</script>
+
+</html>

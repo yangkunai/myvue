@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // class Star {}
+      // function Fn() {}
+      // console.log(typeof Star, typeof Fn);  // class
+
+      // var o = new Star();
+      // var o1 = new Fn();
+    </script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      function myAjax(url) {
+        var promise = new Promise((resolve, reject) => {
+          $.ajax({
+            url,
+            success(res) {
+              resolve(res);
+            },
+            error(err) {
+              reject(err);
+            },
+          });
+        });
+
+        // promise.__proto__ === Promise.prototype;
+        return promise;
+      }
+
+      var p1 = myAjax('http://192.168.69.40:3000/a1');
+      var p2 = myAjax('http://192.168.69.40:3000/a2');
+      var p3 = myAjax('http://192.168.69.40:3000/a3');
+
+      Promise.all([p1, p2, p3]).then(
+        (res) => {
+          console.log('请求成功：', res);
+        },
+        (err) => {
+          console.log('请求失败：', err);
+        }
+      );
+
+      // p1.then((res) => {
+      //   console.log(res);
+      // });
+    </script>
+  </body>
+</html>

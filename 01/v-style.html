@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="root">
+        <p style="color:yellow;background:red;">你现在好吗？心情快乐吗?</p>
+        <p :style="abc">你现在好吗？心情快乐吗?</p>
+        <p :style="fn()">你现在好吗？心情快乐吗?</p>
+        <p :style="'color:yellow;background:red;'">你现在好吗？心情快乐吗?</p>
+        <p :style="{background:'green',color:'blue'}">你现在好吗？心情快乐吗?</p>
+        <p :style="[{background:'green'},{color:'blue'}]">你现在好吗？心情快乐吗?</p>
+        <p :style="[co,bg]">你现在好吗？心情快乐吗?</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        data: {
+            co: {
+                color: 'orange'
+
+            },
+            bg: {
+                background: 'blue'
+            },
+            abc: "color:green;background:gold;"
+        },
+        methods: {
+            fn() {
+                return "color:green;background:gold;"
+            }
+        }
+    })
+</script>
+
+</html>

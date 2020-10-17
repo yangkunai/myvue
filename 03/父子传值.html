@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+
+        <one :abc=n>
+
+
+        </one>
+
+
+    </div>
+</body>
+<script>
+    Vue.component('one', {
+
+        data: function() {
+
+            return {}
+        },
+        props: ['abc'],
+        created() {
+            console.log(this.abc);
+        },
+        template: `
+        
+        <div>
+        <h2>
+        这是子组件 one{{abc}}
+        </h2>
+        </div>
+        `
+    })
+    new Vue({
+
+        el: "#app",
+        data: {
+
+            n: 123
+
+        },
+        component: {
+            //定义组件
+            template: {
+                //模板
+            }
+        },
+        methods: {
+            //定义对象和方法
+
+        },
+        computed: {
+            //计算属性
+        },
+        mounteds: {
+            //生命周期
+        },
+        filters: {
+            //过虑器
+
+        },
+        watch: {
+            //侦听事件
+        },
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+
+        <one>
+
+            <h2 style="color: red;">我是1个插槽</h2>
+            <p slot="abc">我也是一个插槽,但是我在你上面</p>
+            <p slot="bbb">我也是一个插槽,我会在哪里</p>
+
+        </one>
+
+
+    </div>
+</body>
+<template id="tp">
+    <div>
+        <div>
+            <slot  name="bbb" ></slot>
+        </div>
+        <div>  <slot  name="abc" ></slot></div>
+      
+       
+     <slot></slot>
+    </div>
+</template>
+<script>
+    Vue.component('one', {
+
+        data() {
+            return {
+
+            }
+        },
+
+        template: "#tp"
+
+    });
+    new Vue({
+
+        el: "#app",
+        data: {
+
+        },
+        component: {
+            //定义组件
+            template: {
+                //模板
+            }
+        },
+        methods: {
+            //定义对象和方法
+
+        },
+        computed: {
+            //计算属性
+        },
+        mounteds: {
+            //生命周期
+        },
+        filters: {
+            //过虑器
+
+        },
+        watch: {
+            //侦听事件
+        },
+
+    })
+</script>
+
+</html>

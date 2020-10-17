@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<style>
+    #root input {
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    #root input.active {
+        background: red;
+    }
+    
+    #root div {
+        width: 600px;
+        height: 200px;
+    }
+</style>
+
+<body>
+    <div id="root">
+        <input type="button" :class="{active:index===i}" v-for="(item,i) in newList" @click="index=i" :value=" item.type">
+        <div v-show="index===i" v-for="(item,i) in newList">
+
+            <div v-for="inf in item.arr">
+
+                <img :src="inf.newHerf" alt="">
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+        new Vue({
+            el: " #root ",
+            data: {
+                index: 0,
+                newList: [{
+                    type: "国际 ",
+                    arr: [{
+
+                        newHerf: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg "
+                    }, ]
+                }, {
+                    type: "娱乐 ",
+                    arr: [{
+
+                        newHerf: "https://img95.699pic.com/photo/50055/5642.jpg_wh300.jpg "
+                    }, ]
+                }, {
+                    type: "财经 ",
+                    arr: [{
+
+                        newHerf: "https://img95.699pic.com/photo/40100/6015.jpg_wh300.jpg "
+                    }]
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>

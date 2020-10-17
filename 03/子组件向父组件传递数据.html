@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>我是组件：{{num}} --- 这个是从子组件内部发出来的数据：{{msg}}</h2>
+      <div>===================</div>
+      <!-- <div @click="getFromSon"></div> 以前的写法，是给页面绑定事件用的，由用户点击触发这个函数 -->
+      <hello-world :num="num" @msg-event="getFromSon"></hello-world>
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      // 1. 我们想实现子组件向父组件传递数据， 那么肯定要在子组件里面 有一个事件去触发
+      // 2. 子向父传值， 实际上就是父向子 传递一个函数
+      Vue.component('hello-world', {
+        data() {
+          return {
+            msg: 'hello',
+          };
+        },
+        props: ['num'],
+        methods: {
+          sendFn() {
+            // 这个函数就是触发一个事件，往外面传数据的。
+            this.$emit('msg-event', this.msg);
+          },
+        },
+        template: `
+          <div>
+            <p>我是子组件,w外面传进来的数据：  {{num}}，</p>
+            <p>我是子组件 内部的私有数据：   {{msg}}，</p>
+            <button @click="sendFn">子组件内部的按钮</button>
+          </div>
+        `,
+      });
+
+      new Vue({
+        el: '#app',
+        data: function () {
+          return {
+            num: 10,
+            msg: '',
+          };
+        },
+        methods: {
+          // 我们要定义一个方法，接受子组件传递出来的值
+          getFromSon(param) {
+            console.log('我是子组件传递出来的值：', param);
+            this.msg = param;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

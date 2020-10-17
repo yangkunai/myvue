@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>兄弟组件传值</title>
+  </head>
+  <body>
+    <div id="app">
+      <child-1></child-1>
+      <child-2></child-2>
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      // 你了解的组件之间的通讯方式有哪几种？
+      // 通过事件中心去传递  vue-bus  事件总线
+      // 兄弟组件之间传值， 有几个方法 $emit  $on  $off
+      var eventCenter = new Vue();
+      Vue.component('child-1', {
+        data() {
+          return {
+            one: '1',
+            myval: '',
+          };
+        },
+        methods: {
+          fn() {
+            eventCenter.$emit('one-event', this.one);
+          },
+        },
+        mounted() {
+          eventCenter.$on('two-event', (val) => {
+            console.log(val);
+            this.myval = val;
+          });
+        },
+        template: `
+          <div>
+            <h1>这个是child-1组件 {{one}}-- 外面兄弟组件穿金路的数据：{{myval}}</h1> 
+            <button @click="fn">child-1的按钮</button> 
+          </div>
+        `,
+      });
+
+      Vue.component('child-2', {
+        data() {
+          return {
+            two: '2',
+            myval: '',
+          };
+        },
+        methods: {
+          fn() {
+            eventCenter.$emit('two-event', this.two);
+          },
+        },
+        mounted() {
+          eventCenter.$on('one-event', (val) => {
+            console.log('什么时候执行呢？', val);
+            this.myval = val;
+          });
+        },
+        template: `
+          <div>
+            <h1>这个是child-2组件  接受的外面的值：{{myval}}</h1>  
+            <button @click="fn">chiild2的按钮</button>
+          </div>
+        `,
+      });
+
+      new Vue({
+        el: '#app',
+    

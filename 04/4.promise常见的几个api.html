@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(123);
+                // reject(123);
+            }, 100);
+        });
+
+        console.log(1);
+        promise.then(
+            (res) => {
+                console.log('2.成功');
+            },
+            (err) => {
+                console.log('3.失败');
+            }
+        );
+        console.log(4);
+
+        promise
+            .then((res) => {
+                console.log('1.请求成的处理函数：', res);
+            })
+            .catch((err) => {
+                console.log('2.请求成的失败函数：', err);
+            })
+            .finally(() => {
+                console.log('3.无论请求成功还是失败都会执行：');
+            });
+
+        axios().then()
+    </script>
+</body>
+
+</html>

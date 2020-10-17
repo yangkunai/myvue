@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    我在马路边捡到一元钱，把他交给警察叔叔。
+</div>
+</body>
+<script>
+    // 直接定义
+    new Vue({
+        el:"#root",
+        // 如果指定模板，会将el所挂载的元素给替换掉。
+        // template:"<div>我在这里挺好的，我怀念之前的美好时光。</div>",
+        // 模板有且只能是一个根元素。
+        // template:"<div v-if='true'>1</div><div v-else>2</div>",
+        // template:"<div><div>1</div><div>2</div></div>",
+        template:`
+            <div>
+                <div>
+                    <input type="button" @click="changeUserName" value="你点我呀">
+                    <input type="text"  v-model="userName">
+                </div>
+            </div>
+        `,
+        data:{
+            userName:"我很好"
+        },
+        methods:{
+            changeUserName(){
+                this.userName = "我确实很好！";
+            }
+        },
+        filters:{},
+        computed:{},
+        mounted(){}
+    })
+</script>
+</html>

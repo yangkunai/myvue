@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #app input {
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    #app input.active {
+        background: red;
+    }
+    
+    #app div {
+        width: 200px;
+        height: 200px;
+        background: yellow;
+    }
+</style>
+
+<body>
+    <div id="app">
+
+        <input type="button" value="娱乐">
+        <input type="button" value="财经">
+        <input type="button" value="新闻">
+        <div>娱乐</div>
+        <div>财经</div>
+        <div>新闻</div>
+
+    </div>
+</body>
+<script>
+    let btns = document.querySelectorAll('#app input')
+    let div = document.querySelectorAll('#app div')
+    let index = 0
+    for (let i = 0; i < btns.length; i++) {
+        //隐藏所有的div
+        div[i].style.display = 'none'
+            //绑定按钮
+        btns[i].onclick = function() {
+            //隐藏默认按钮和div
+            hidn()
+            index = i
+                //显示
+            show()
+        }
+    }
+
+    function hidn() {
+        btns[index].className = 'null'
+        div[index].style.display = 'none'
+    }
+    show()
+
+    function show() {
+        //设置默认按钮显示颜色
+        btns[index].className = 'active'
+            //默认显示第一个
+        div[index].style.display = 'block'
+    }
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        {{msg}} || {{str.split("").reverse().join("")}}
+    </div>
+
+</body>
+<!-- 这个指定解决插值闪存问题  v-cloak -->
+
+
+<script type="text/javascript">
+    let ve = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello vue',
+            str: '倒过来念就是猪',
+        }
+    });
+</script>
+
+</html>

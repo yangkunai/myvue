@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      // 因为这个回调地狱的问题， 导致代码不好维护，所以后面有了一种 promise 的 规则来让我们的代码不再有这个问题
+      $.ajax({
+        // url: 'http://localhost:3000/data',
+        url: 'http://192.168.69.40:3000/data',
+        method: 'get',
+        data: {},
+        success(res) {
+          console.log('1 ', res);
+          $.ajax({
+            url: 'http://192.168.69.40:3000/data1',
+            method: 'get',
+            data: {},
+            success(res) {
+              console.log('2 ', res);
+              $.ajax({
+                url: 'http://192.168.69.40:3000/data2',
+                method: 'get',
+                data: {},
+                success(res) {
+                  console.log('3 ', res);
+                },
+                error(err) {},
+              });
+            },
+            error(err) {},
+          });
+        },
+        error(err) {},
+      });
+    </script>
+  </body>
+</html>

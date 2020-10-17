@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // promise 承诺的意思， 保证了我们最终的结果要么是成功，要么是失败
+      // 这个promise就是提前 约定好我们后面 异步程序的结果
+      // resolve是成功以后执行的回调函数， reject是失败以后执行的函数
+      var promise = new Promise((resolve, reject) => {
+        var num = Math.random(); //[0,1)
+        setTimeout(() => {
+          // 我们模拟异步请求的操作，这里就是随机数如果大于0.5 就当做成功， 否则就是失败
+          if (num > 0.5) {
+            resolve(num);
+          } else {
+            reject(num);
+          }
+        }, 100);
+      });
+
+      promise.then(
+        (res) => {
+          console.log('请求成功：', res);
+        },
+        (err) => {
+          console.log('请求失败：', err);
+        }
+      );
+    </script>
+  </body>
+</html>

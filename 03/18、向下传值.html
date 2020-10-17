@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="button" @click="fn" :value="n">
+        <one :abc="n"></one>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        data: {
+            n: 1
+        },
+        components: {
+            one: {
+                // 通过props可以限制接收的数据。
+                props: ["abc"],
+                template: `
+                    <div>one {{abc}}</div>
+                `
+            }
+        },
+        methods: {
+            fn() {
+                this.n++;
+            }
+        }
+    })
+</script>
+
+</html>

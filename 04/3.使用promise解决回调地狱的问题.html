@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      function myAjax(url) {
+        var promise = new Promise((resolve, reject) => {
+          $.ajax({
+            url,
+            success(res) {
+              resolve(res);
+            },
+            error(err) {
+              reject(err);
+            },
+          });
+        });
+
+        console.dir(promise);
+        return promise;
+      }
+
+      myAjax('http://192.168.69.40:3000/data')
+        .then((res) => {
+          console.log('这是第一个请求的打印：', res);
+          return myAjax('http://192.168.69.40:3000/data1');
+        })
+        .then((res) => {
+          console.log('这是第二个请求的打印：', res);
+          return myAjax('http://192.168.69.40:3000/data2');
+        })
+        .then((res) => {
+          console.log('这是第三个请求的打印：', res);
+          return 'hello';
+        })
+        .then((res) => {
+          console.log(
+            '上面的函数返回的不是一个我们自定义的函数，但是会被then这个函数，手动处理为一个promise',
+            res
+          );
+        })
+        .then((res) => {
+          console.log('上面没有renturn:', res);
+        })
+        .catch((err) => {
+          console.log('所有的请求的错误，都会到这里来：', err);
+        });
+    </script>
+  </body>
+</html>

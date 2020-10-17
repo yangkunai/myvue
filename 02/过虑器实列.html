@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="root">
+
+        <div v-for="item in goodlist" :key="item.id">
+            <p>商品名称:{{item.shangpin}}</p>
+            <p>商品价格:{{item.mach | meiyuan}}</p>
+            <p>上架时间:{{item.addTime |date}}</p>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#root",
+        data: {
+            goodlist: [{
+                id: 1,
+                shangpin: "葡萄",
+                mach: 12.63,
+                addTime: Date.now() - 121522651,
+            }, {
+                id: 2,
+                shangpin: "榴莲",
+                mach: 42.63,
+                addTime: Date.now() - 1121223,
+            }]
+
+        },
+        filters: {
+
+            meiyuan(v) {
+
+                return "$" + v.toFixed(2)
+
+            },
+            date(v) {
+                const time = new Date(v);
+                return time.getFullYear() + "-" +
+                    ((time.getMonth() + 1)).toString().padStart(2, 0) + "-" +
+                    (time.getDate()).toString().padStart(2, 0) + " " +
+                    (time.getHours()).toString().padStart(2, 0) + ":" +
+                    (time.getMinutes()).toString().padStart(2, 0) + ":" +
+                    (time.getSeconds()).toString().padStart(2, 0);
+            }
+
+
+        },
+        methods: {
+
+        },
+
+
+    })
+</script>
+
+</html>

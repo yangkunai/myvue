@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="button" @click="index++;if(index>3){index=0;}" value="切换">
+        <!--    <components is="two"></components>-->
+
+        <components :is="comArr[index]"></components>
+
+        <!--    <one v-show="index===0"></one>-->
+        <!--    <two  v-show="index===1"></two>-->
+        <!--    <three  v-show="index===2"></three>-->
+        <!--    <four  v-show="index===3"></four>-->
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        data: {
+            index: 0,
+            comArr: ["one", "two", "three", "four"]
+        },
+        components: {
+            one: {
+                template: `<div style="background:red">one</div>`
+            },
+            two: {
+                template: `<div style="background:yellow">two</div>`
+            },
+            three: {
+                template: `<div style="background:green">three</div>`
+            },
+            four: {
+                template: `<div style="background:blue">four</div>`
+            }
+        }
+    })
+</script>
+
+</html>

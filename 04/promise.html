@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nweDocument</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //Promise  
+
+    let p = new Promise((res, rsj) => {
+
+        let num = 10;
+        setTimeout(() => {
+
+            num = 100
+            res(num)
+
+        }, 2000)
+
+    });
+    p.then(
+        (res) => {
+            console.log('请求成功：', res);
+        },
+        (err) => {
+            console.log('请求失败：', err);
+        }
+    );
+    console.log(num);
+    //
+</script>
+
+</html>

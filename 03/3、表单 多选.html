@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <input type="checkbox" v-model.number="hobby" name="hobby" value="1">学习
+    <input type="checkbox" v-model.number="hobby" name="hobby" value="2">游泳
+    <input type="checkbox" v-model.number="hobby" name="hobby" value="3">下棋
+    <input type="checkbox" v-model.number="hobby" name="hobby" value="4">乒乓球
+    <div>{{hobby}}</div>
+</div>
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            // 布尔，true 全选 ，false 全部取消。
+           // hobby:0
+            hobby:[4]
+        },
+        methods:{},
+        filters:{},
+        computed:{},
+        mounted(){}
+    })
+</script>
+</html>

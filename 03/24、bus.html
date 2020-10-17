@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        {{userName}}
+        <My></My>
+        <You></You>
+    </div>
+</body>
+<script>
+    // 公共汽车
+    // const bus = new Vue();
+    Vue.prototype.userName = "laoli"
+    Vue.prototype.$bus = new Vue();
+    new Vue({
+        el: "#root",
+        data: {
+
+        },
+        components: {
+            You: {
+                data() {
+                    return {
+                        num: 1
+                    }
+                },
+                template: `
+                    <div>我是you,今年{{num}}岁了</div>
+                `,
+                mounted() {
+                    this.$bus.$on("my", (n) => {
+                        this.num += n;
+                        console.log(3333333333);
+                    })
+                }
+            },
+            My: {
+                methods: {
+                    fn() {
+                        this.$bus.$emit("my", 2);
+                    }
+                },
+                template: `
+                    <div>My
+                        <input type="button" @click="fn" value="发布">
+                    </div>
+                `
+            }
+        },
+        mounted() {
+            this.$bus.$on("my", () => {
+                console.log(1111111111);
+            })
+            console.log(this.userName);
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <one></one>
+        <site-info></site-info>
+    </div>
+</body>
+<script>
+    // 当你的组件名称当中使用驼峰命名时，在使用组件时，名字小写与大写之间应该用-来分割。大写改小写。
+    new Vue({
+        el: "#root",
+        components: {
+            one: {
+                template: `
+                    <div>我是一个one组件</div>
+               `
+            },
+            siteInfo: {
+                template: `
+                    <div>我是一个展示站点信息的组件</div>
+               `
+            }
+        },
+        data: {
+
+        },
+        methods: {},
+        filters: {},
+        computed: {},
+        mounted() {}
+    })
+</script>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        fname: <input type="text" v-model="fname">; lname: <input type="text" v-model="lname">; 全称:
+        <p>{{funame}}</p>
+        <p>计算属性:{{fn}}</p>
+
+
+
+
+
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+        data: {
+            fname: '',
+            lname: '',
+            funame: '',
+
+        },
+        methods: {
+
+
+        },
+
+        computed: {
+            fn: function() {
+
+                return this.fname + this.lname
+
+            },
+
+        },
+        watch: {
+
+            fname: function(newV, oldV) {
+
+                this.funame = newV + this.lname
+            },
+            lname: function(newV, oldV) {
+                this.funame = this.fname + newV
+            }
+
+
+
+        },
+
+
+
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        青龙
+        <suibian></suibian>白虎
+        <suibian></suibian>
+        <suibian></suibian>
+        <suibian></suibian>
+        <suibian></suibian>
+        <suibian></suibian>
+        <suibian></suibian>
+        <suibian></suibian>
+        <suibian></suibian>
+    </div>
+</body>
+<script>
+    // 1、如何定义（注册）组件
+    new Vue({
+        el: "#root",
+        data: {
+
+        },
+        // 可以在components当中定义组件.组件的内容，即是模板的内容。
+        components: {
+            // 定义 一个名字为suibian的组件。
+            suibian: {
+                template: `
+                    <div>定义了一个组件，名字为suibian</div>
+                `
+            }
+        },
+        methods: {},
+        filters: {},
+        computed: {},
+        mounted() {}
+    })
+</script>
+
+</html>

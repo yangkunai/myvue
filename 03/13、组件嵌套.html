@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <one></one>
+        <!--    <two></two>-->
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        // 只能够使用自身定义的组件，在其它地方定义的组件是无法使用。
+        components: {
+            one: {
+                components: {
+                    two: {
+                        template: `
+                            <div>two</div>
+                        `
+                    }
+                },
+                template: `
+                    <div>我的名字叫one<two></two></div>
+                `
+            }
+        }
+    })
+</script>
+
+</html>

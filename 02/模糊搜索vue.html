@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scalroote=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="root">
+        <input type="text" v-model="str">
+        <div v-for="item in newList" v-show="item.includes(str) && str!==''">{{item}}</div>
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#root",
+        data: {
+            str: "",
+            newList: ["zhangsan", "lisi", "wangwu", "zhaoliu", "yangkun"]
+
+
+
+        }
+
+
+    })
+</script>
+
+</html>

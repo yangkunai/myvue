@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', 'http://192.168.69.40:3000/data');
+      xhr.send();
+      // xhr.onload = function () {
+      //   console.log(xhr.responseText);
+      // };
+      xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+          console.log(xhr.responseText);
+        }
+      };
+
+      fetch('http://192.168.69.40:3000/data')
+        .then((abc) => {
+          return abc.text();
+        })
+        .then((a) => {
+          console.log('最终的结果：', a);
+        });
+    </script>
+  </body>
+</html>

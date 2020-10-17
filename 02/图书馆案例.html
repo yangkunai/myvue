@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        .grid {
+            margin: auto;
+            width: 530px;
+            text-align: center;
+        }
+        
+        .grid table {
+            border-top: 1px solid #c2d89a;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .grid th,
+        td {
+            padding: 10;
+            border: 1px dashed #f3dcab;
+            height: 35px;
+            line-height: 35px;
+        }
+        
+        .grid th {
+            background-color: #f3dcab;
+        }
+        
+        .grid .book {
+            padding-bottom: 10px;
+            padding-top: 5px;
+            background-color: #f3dcab;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h1>图书管理</h1>
+                <div class="book">
+                    <div>
+                        <label for="id"> 编号： </label>
+                        <input :disabled="Elist" type="text" id="id" v-model.trim="id" />
+                        <label for="name"> 名称： </label>
+                        <input type="text" id="name" v-model.trim="name" />
+                        <button @click="handle">提交</button>
+                    </div>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr v-for="item in books" :key="item.id">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.dat |date}}</td>
+                        <td>
+                            <a href="" @click.prevent="amend(item.id,item.name)">修改</a>
+                            <a href="" @click.prevent="del(idnex)">删除</a>
+
+                        </td>
+
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      图书管理-添加图书
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                Elist: false,
+                books: [{
+                    id: 1,
+                    name: '三国演义',
+                    dat: Date.now() - 1121222323,
+
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    dat: Date.now() - 112451223,
+
+                }, {
+                    id: 3,
+                    name: '红楼梦',
+                    dat: Date.now() - 112121223,
+
+                }, {
+                    id: 4,
+                    name: '西游记',
+                    dat: Date.now() - 112122523,
+
+                }, ],
+            },
+            methods: {
+                handle: function() {
+
+                    if (this.Elist) {
+                        // 这个if语句就是处于编辑状态
+                        console.log(this.id);
+                        this.books.forEach((item) => {
+                            if (item.id === this.id) {
+                                item.name = this.name;
+                                item.date = ''
+                                this.Elist = false;
+                                this.id = '';
+                                this.name = '';
+                            }
+                        });
+
+                    } else {
+                        if (this.id && this.name) {
+                            let obj = {
+                                id: this.id,
+                                name: this.name,
+                                dat: Date.now(),
+                            };
+                            this.books.push(obj)
+                            this.id = ''
+                            this.name = ''
+
+                        }
+                    }
+
+
+                },
+
+                amend(id, name) {
+                    this.id = id
+                    this.name = name
+                    this.Elist = true
+
+
+
+
+
+                },
+                del(index) {
+                    this.books.splice(index, 1)
+                    this.id = ''
+                    this.name = ''
+                    this.Elist = false
+
+
+
+
+                },
+                getNowTime(v) {
+                    // 将时间戳转为年月日时分秒
+                    const date = new Date(v);
+                    return date.getFullYear() + "-" +
+                        ((date.getMonth() + 1)).toString().padStart(2, 0) + "-" +
+                        (date.getDate()).toString().padStart(2, 0) + " " +
+                        (date.getHours()).toString().padStart(2, 0) + ":" +
+                        (date.getMinutes()).toString().padStart(2, 0) + ":" +
+                        (date.getSeconds()).toString().padStart(2, 0);
+                },
+            },
+            filters: {
+                date(v) {
+                    const time = new Date(v);
+                    return time.getFullYear() + "-" +
+                        ((time.getMonth() + 1)).toString().padStart(2, 0) + "-" +
+                        (time.getDate()).toString().padStart(2, 0) + " " +
+                        (time.getHours()).toString().padStart(2, 0) + ":" +
+                        (time.getMinutes()).toString().padStart(2, 0) + ":" +
+                        (time.getSeconds()).toString().padStart(2, 0);
+                }
+            }
+
+
+
+        });
+    </script>
+</body>
+
+</html>

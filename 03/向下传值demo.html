@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        <book :info="bookInfo.wuxia"></book>
+        <book :info="bookInfo.yanqing"></book>
+        <book :info="bookInfo.chuanYue"></book>
+    </div>
+</body>
+<template id="tp">
+    <div >
+        <p  v-for="(item,i) in info" >{{item}}</p>
+        <hr>
+    </div>
+     </template>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            bookInfo: {
+                wuxia: ["天龙八部", "圆月弯刀", "小李飞刀"],
+                yanqing: ["情深深雨蒙蒙", "还珠格格", "霸道总裁"],
+                chuanYue: ["唐砖", "庆余年", "宫"]
+            },
+        },
+        components: {
+            //定义组件
+            book: {
+                props: ["info"],
+                template: "#tp"
+
+            },
+
+        },
+
+    })
+</script>
+
+</html>

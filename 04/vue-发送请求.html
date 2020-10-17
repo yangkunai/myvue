@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        <button @click="fn">发送请求</button>
+
+
+
+
+
+    </div>
+</body>
+<script src="../04/myapi/node_modules/axios/dist/axios.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    new Vue({
+
+        el: "#app",
+        data() {
+            return {
+                msg: "默认值"
+            }
+        },
+
+        methods: {
+
+            async fn() {
+                const res = await axios.get("http://localhost:3000")
+                this.msg = res.data
+            }
+
+        },
+
+
+    })
+</script>
+
+</html>

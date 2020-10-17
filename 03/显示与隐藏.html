@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        <input type="button" @click="isShow=!isShow" value="显示与隐藏">
+
+
+        <!-- <warp v-show="isShow" :fn="changeShow"></warp> -->
+        <warp v-show="isShow" @aaa="changeShow"></warp>
+
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+        data: {
+            isShow: true
+
+        },
+        methods: {
+            changeShow(a) {
+
+                this.isShow = a;
+
+
+            }
+
+        },
+        components: {
+            //定义组件
+            warp: {
+                props: ["fn"],
+                template:
+                //模板``
+                    `
+                    <div style="width:200px;height:200px;background:red;" >
+                        <input type="button"  @click='fn(false)' value="隐藏2">
+                        <input type="button"  @click="$emit('aaa',false)" value="隐藏3">
+                        我是一个叫warp的组件
+                       
+
+                        </div>
+                    
+                    
+                    `
+            }
+
+        },
+
+
+
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="text" v-model="n">
+        <one></one>
+        <one></one>
+        <one></one>
+        <one></one>
+        <one></one>
+    </div>
+</body>
+<script>
+    // 组件当中的数据，与其外部的实例是不共享的。
+    new Vue({
+        el: "#root",
+        components: {
+            one: {
+                // 工厂
+                // 在组件内定义的数据（data), 1、必须要是一个函数。2、函数必须要有返回值 3、返回值必须要是一个对象
+                data() {
+                    return {
+                        n: 23
+                    }
+                },
+
+                template: `
+                    <div>你过来看看我,<input type="text" v-model="n"></div>
+                `
+            }
+        },
+        data: {
+            n: 1
+        }
+    })
+</script>
+
+</html>

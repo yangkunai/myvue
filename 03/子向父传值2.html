@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{parent}}, {{msg}}</h2>
+      <div>==================</div>
+      <hello-world :num="parent" @child-event="getFromSon"></hello-world>
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('hello-world', {
+        data: function () {
+          return {
+            child: 10,
+          };
+        },
+        props: ['num'],
+        methods: {
+          sendFn() {
+            // 专门触发一个事件，将值传递出来
+            this.$emit('child-event', {
+              name: '张三',
+              child: this.child,
+              age: 24,
+            });
+          },
+        },
+        template: `
+          <div>
+            <p>我是子组件内部的数据： {{child}}</p>
+            <p>这个是父组件向子组件传递的值： {{num}}</p>
+            <button @click="sendFn">我是子组件内部的按钮</button>
+          </div>
+        `,
+      });
+
+      new Vue({
+        el: '#app',
+        data: function () {
+          return {
+            parent: 100,
+            msg: '',
+          };
+        },
+        methods: {
+          // 这个方法就是通过事件的形式传递到子组件内部去，然后将子组件需要传递出来的值，通过这个函数的形参带出来
+          getFromSon(p) {
+            console.log('我得到了子组件的数据：', p);
+            this.msg = p.child;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

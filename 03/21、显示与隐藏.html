@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="button" @click="isShow = !isShow" value="显示与隐藏">
+        <!--    <wrap v-show="isShow" :change-is-show="changeIsShow"></wrap>-->
+        <wrap v-show="isShow" @abcdefg="changeIsShow"></wrap>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        data: {
+            isShow: true
+        },
+        methods: {
+            changeIsShow(bol) {
+                this.isShow = bol;
+            }
+        },
+        components: {
+            wrap: {
+                props: ["changeIsShow"],
+                template: `
+                    <div style="width:200px;height:200px;background:red;">
+                        <input type="button" @click="changeIsShow(false)" value="隐藏">
+                        <input type="button" @click="$emit('abcdefg',false)" value="隐藏2">
+                        我是一个名字wrap的组件
+                    </div>
+                `
+            }
+        }
+    })
+</script>
+
+</html>

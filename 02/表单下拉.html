@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="type">
+        <select v-model="type">
+
+    <option value="1">吃饭</option>
+    <option value="2">洗澡</option>
+    <option value="3">玩游戏</option>
+   
+</select>
+        <div>{{type}}</div>
+
+
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+        data: {
+            type: 2
+
+        },
+        methods: {
+
+        },
+        mounteds: {
+
+        },
+
+
+
+
+    })
+</script>
+
+</html>

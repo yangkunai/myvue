@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<style>
+    .co {
+        color: greenyellow;
+    }
+    
+    .bg {
+        background: lightskyblue;
+    }
+    
+    .abc {
+        background: green;
+    }
+</style>
+<script src="lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <p :class="myBg">走一下</p>
+        <p :class="1===2?myBg:myAbc">走一下</p>
+        <p :class="{abc:true}">走一下</p>
+
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#root",
+        data: {
+            myAbc: "bg co",
+            myBg: "abc"
+        }
+    })
+</script>
+
+</html>

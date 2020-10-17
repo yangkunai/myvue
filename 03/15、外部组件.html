@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <one></one>
+        <two></two>
+        <three></three>
+    </div>
+</body>
+<script>
+    const components = {
+        one: {
+            template: `<div>one组件</div>`
+        },
+        two: {
+            template: `<div>two组件</div>`
+        },
+        three: {
+            template: `<div>three组件</div>`
+        }
+    }
+    new Vue({
+        el: "#root",
+        components
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+
+    <div id="app">
+        <!-- 遍历数组 -->
+        <!-- <div v-for="(value,index) in arr">{{value}}|{{index}}</div> -->
+        <!-- 遍历对象 -->
+        <div v-for="(value,key) in obj">{{value}}|{{key}}</div>
+        <!-- 遍历数字 -->
+        <div v-for="(value,key) in number">{{value}}|{{key}}</div>
+        <!-- 遍历字符串 -->
+        <div v-for="(value,key) in str">{{value}}|{{key}}</div>
+    </div>
+
+</body>
+
+
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            arr: [1, 2, 3, 4, 5, 6, 8, 9],
+            obj: {
+                usname: 'zhangsan',
+                age: 18,
+            },
+            number: 15,
+            str: '啦啦啦啦啦啦啦啦'
+        },
+
+
+    });
+</script>
+
+</html>

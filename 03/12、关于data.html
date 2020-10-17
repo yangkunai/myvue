@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <add-one></add-one>
+        <add-one></add-one>
+        <add-one></add-one>
+        <add-one></add-one>
+        <add-one></add-one>
+        <add-one></add-one>
+        <add-one></add-one>
+    </div>
+</body>
+<script>
+    const obj = {
+        n: 0
+    }
+    new Vue({
+        el: "#root",
+        components: {
+            // 组件不可以直接使用外部定义的过滤器、methods,data
+            addOne: {
+                data() {
+                    return obj
+                },
+                methods: {
+                    fn() {
+                        this.n++;
+                    }
+                },
+                template: `
+                    <div><input type="button" @click="fn" :value="n"></div>
+                `
+            }
+        },
+        data: {
+
+        },
+        methods: {},
+        filters: {},
+        computed: {},
+        mounted() {}
+    })
+</script>
+
+</html>

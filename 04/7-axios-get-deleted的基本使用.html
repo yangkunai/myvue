@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script>
+      // axios 返回的就是一个 promise对象； 可以使用.then  .catch
+      // 如果不手动写一个处理错误的函数，那么我们的代码就会抛出一个异常，代码就是执行中断。 如果你做一个错误处理函数，那么就不会中断代码，还会继续往下走，这样程序就不受这个代码错误的限制
+
+      // try {
+      //   console.log(111);
+      //   throw new Error('我是个错误');
+      // } catch (err) {
+      //   console.log('错误', err);
+      // }
+      // console.log(11111);
+
+      // jquery的几个方法  $.get()  $.post()   $.ajax()
+
+      // 后端接收的的时候 使用的是 req.query.xxx
+      // axios.get('http://192.168.69.40:3000/axios?id=200').then(
+      //   (res) => {
+      //     console.log('请求成：', res.data);
+      //   },
+      //   (err) => {
+      //     console.log('请求失败：', err);
+      //   }
+      // );
+      // axios
+      //   .get('http://192.168.69.40:3000/axios', {
+      //     params: {
+      //       id: 100,
+      //     },
+      //   })
+      //   .then(
+      //     (res) => {
+      //       console.log('请求成：', res.data);
+      //     },
+      //     (err) => {
+      //       console.log('请求失败：', err);
+      //     }
+      //   );
+
+      // 动态路由的参数形式
+      axios
+        .get('http://192.168.69.40:3000/axios/123', {
+          params: {
+            id: 100,
+          },
+        })
+        .then(
+          (res) => {
+            console.log('请求成：', res.data);
+          },
+          (err) => {
+            console.log('请求失败：', err);
+          }
+        );
+    </script>
+  </body>
+</html>

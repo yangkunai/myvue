@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 发送一个get请求，并传递get请求的参数， ndoejs后端是通过 req.query
+      fetch('http://192.168.69.40:3000/books?name=zs&id=100')
+        .then((res) => {
+          return res.text();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      // 2. 通过动态路由的方式传递参数, nodejs后端是通过 req.params 获取的
+      fetch('http://192.168.69.40:3000/books/aaaa')
+        .then((res) => {
+          return res.text();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      // 3.通过delete的请求，也是动态路由获取的参数
+      fetch('http://192.168.69.40:3000/books/222', {
+        method: 'delete',
+      })
+        .then((res) => {
+          return res.text();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      // 4. 通过post请求传递参数 后端是在req.body 请求体 里面获取的参数
+      fetch('http://192.168.69.40:3000/books', {
+        method: 'post',
+        body: 'uname=zs&pwd=123456',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+        .then((res) => {
+          return res.text();
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      // 5. 使用application/json
+      //   multipart/form-data  我们一般上传图片，必须使用这个类型，图片的值是二进制，方便存储 --- new FormData()
+      fetch('http://192.168.69.40:3000/books', {
+        method: 'post',
+        // 这样写了以后，后端通过JSON.parse 才会解析出来一个对象或数组，才能继续使用
+        // post请求传参数的时候，不能传数组和对象； 我们传的是数组或对象类型的 字符串
+        body: JSON.stringify({
+          uname: 'zs',
+          pwd: 123456,
+        }),
+        // body: {
+        //   uname: 'zs',
+        //   pwd: 123456,
+        // },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => {
+          // return res.text();
+          return res.text();
+        })
+        .then((res) => {
+          console.log(111, typeof res);
+        });
+
+      // 6. 演示返回值的 转换问题
+      fetch('http://192.168.69.40:3000/json')
+        .then((res) => {
+          // return res.text();
+          return res.json();
+        })
+        .then((res) => {
+          // console.log(22222, typeof res, JSON.parse(res));
+          console.log(333, typeof res, res);
+        });
+    </script>
+  </body>
+</html>

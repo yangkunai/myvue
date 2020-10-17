@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="item in Listbook">
+            <p>{{item.author}}:{{item.namebook}}</p>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            Listbook: [{
+
+                    author: "唐家三少",
+                    namebook: "斗罗大陆"
+
+                }, {
+
+                    author: "曹雪芹",
+                    namebook: "红楼梦"
+                }
+
+            ]
+        }
+    })
+</script>
+
+</html>

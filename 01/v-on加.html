@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <input type="button" value="加1" v-on:click='num++'>
+        <input type="button" value="加2" v-on:click='num+=2'>
+        <input type="button" value="加3" v-on:click='function(){num+=3}'>
+        <input type="button" value="加4" v-on:click='()=>{num+=4}'>
+        <input type="button" value="加5" v-on:click="addFive">
+
+        <h1>
+            {{num}}
+        </h1>
+
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+        data: {
+
+            num: 0
+        },
+        methods: {
+            addFive() {
+
+                this.num += 5
+
+            }
+
+
+
+
+        }
+
+
+
+
+    })
+</script>
+
+</html>

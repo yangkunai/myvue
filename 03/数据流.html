@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <div id="app">
+        <h1>{{abc}}</h1>
+        <button @click="abc++">修改父元素的</button>
+        <one :abc="abc"></one>
+    </div>
+</body>
+<template id="tp">
+    <div>
+        <h3>这个数据是父组件传来的:不能改:{{abc}}</h3>
+        <h2>这个是父传子的数据:{{myabc}}</h2>
+        <button @click="myabc++" >我是子组件的方法修改props值</button>
+    </div>
+</template>
+<script>
+    Vue.component('one', {
+
+        data() {
+            return {
+                myabc: this.abc
+            }
+        },
+        props: ['abc'],
+
+        template: "#tp"
+
+    });
+
+    new Vue({
+
+        el: "#app",
+        data() {
+            return {
+                abc: 100
+
+            }
+
+
+
+        },
+        component: {
+            //定义组件
+            template: {
+                //模板
+            }
+        },
+        methods: {
+            //定义对象和方法
+
+        },
+        computed: {
+            //计算属性
+        },
+        mounteds: {
+            //生命周期
+        },
+        filters: {
+            //过虑器
+
+        },
+        watch: {
+            //侦听事件
+        },
+
+    })
+</script>
+
+</html>

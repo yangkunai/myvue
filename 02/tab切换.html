@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<style>
+    #app input {
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    #app input.active {
+        background: red;
+    }
+    
+    #app div {
+        width: 600px;
+        height: 200px;
+    }
+</style>
+
+<body>
+    <div id="app">
+
+        <input type="button" :class="{active:index===i}" v-for="(item,i) in newList" :key="item.id" :value="item.type" @click.prevent="index=i">
+        <div v-for="(item,i) in newList" v-show="index===i">
+            <div v-for="info in item.arr">
+
+                <img :src="info.newHerf" alt="">
+
+
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+        data: {
+            index: 0,
+            newList: [{
+                id: 1,
+                type: "国际 ",
+                arr: [{
+
+                    newHerf: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg "
+                }, ]
+            }, {
+                id: 2,
+                type: "娱乐 ",
+                arr: [{
+
+                    newHerf: "https://img95.699pic.com/photo/50055/5642.jpg_wh300.jpg "
+                }, ]
+            }, {
+                id: 3,
+                type: "财经 ",
+                arr: [{
+
+                    newHerf: "https://img95.699pic.com/photo/40100/6015.jpg_wh300.jpg "
+                }]
+            }]
+
+        },
+        methods: {
+
+        },
+        mounteds: {
+
+        },
+
+
+
+
+    })
+</script>
+
+</html>

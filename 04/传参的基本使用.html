@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="../04/myapi/node_modules/axios/dist/axios.js"></script>
+<script>
+    //axios  返回的就是一个promise对象..可以使用.then .catch  
+    //如果不手动写一个处理错误的函数.那么我们的代码就会抛出一个中断,如果你做一个错误处理函数,
+    //那么就不会中断代码,还会继续执行,
+    // axios.get('http://localhost:3000/axios').then((res) => {
+
+    //     console.log('请求成:', res.data);
+
+    // }, (err) => {
+
+    //     console.log('请求失败', err);
+
+
+    // })
+
+
+    axios({
+
+        url: 'http://localhost:3000/axios',
+        method: "post",
+        params: {
+            uname: 'zhangs',
+            pwd: 123456
+        },
+        data: {
+
+            uname: "fa",
+            pwd: 21213,
+
+
+        },
+
+
+    }).then(
+        (res) => {
+            console.log('成功:L:', res);
+        },
+        (err) => {
+            console.log('失败:L:', err);
+        }
+    );
+</script>
+
+</html>

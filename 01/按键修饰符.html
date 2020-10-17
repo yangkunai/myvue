@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+    <!-- <div id="app">
+        <input type="text" v-on:keyup.space="fn">
+    </div>
+
+    </div> -->
+    <input type="text" id="leftTime" placeholder="请输入 0 以上的整数">
+    <button id="btn">开始</button>
+    <input type="text" id="rightTime" placeholder="开始倒计时">
+</body>
+<script>
+    // new Vue({
+
+
+    //     el: "#app",
+    //     data: {
+
+
+    //     },
+    //     methods: {
+    //         //prevent阻止默认行为
+    //         fn() {
+    //             console.log('登录成功');
+
+    //         },
+    //     },
+
+    // })
+    var btn = document.getElementById("btn");
+    var leftTime = document.getElementById("leftTime");
+    var rightTime = document.getElementById("rightTime");
+    btn.onclick = function() {
+        if (leftTime.value > 0) {
+            rightTime.value = leftTime.value
+        } else {
+            rightTime.value = 1
+        }
+        var cle = setInterval(function() {
+            rightTime.value--;
+            if (rightTime.value == 0) {
+
+                window.clearInterval(cle)
+            }
+        }, 1000)
+    }
+</script>
+
+</html>

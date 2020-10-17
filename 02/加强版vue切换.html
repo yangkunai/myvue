@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<style>
+    #root input {
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    #root input.active {
+        background: red;
+    }
+    
+    #root div {
+        width: 600px;
+        height: 200px;
+        background: yellow;
+    }
+</style>
+
+<body>
+    <div id="root">
+        <input type="button" :class="{active:index===i}" v-for="(item,i) in newList" @click="index=i" :value=" item.type">
+        <div v-show="index===i" v-for="(item,i) in newList">
+
+            <p v-for="inf in item.arr">
+
+                <a :href="inf.newHerf">{{inf.neStile}}</a>
+
+            </p>
+
+        </div>
+
+    </div>
+    <script>
+        new Vue({
+
+            el: "#root",
+            data: {
+                index: 0,
+                newList: []
+
+
+            },
+            //当刷新页面以后，并生成VUE实例以后，会执行该函数。
+            //当页面挂载完毕以后会执行该函数。钩子函数
+            mounted() {
+                const xhr = new XMLHttpRequest
+                xhr.open("get", "data.json")
+                xhr.send()
+                xhr.onload = () => {
+                    this.newList = JSON.parse(xhr.responseText)
+                }
+
+
+
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>
